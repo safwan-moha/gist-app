@@ -15,8 +15,20 @@ const styles = theme => ({
     marginLeft: '50%',
     marginTop: '120px'
   },
+  resultDivMove: {
+    margin: '0 auto',
+    marginTop: '20px'
+  },
   resultDiv: {
-    margin: '0 auto'
+    transition: 'margin 700ms',
+    margin: '0 auto',
+    marginTop: '150px'
+  },
+  animater: {
+    marginTop: '20px'
+  },
+  animaterTop: {
+    marginTop: '20px'
   },
   defaultText: {
     color: '#555555',
@@ -44,11 +56,13 @@ const GistView = (props) => {
   return (
     <div className={classes.container}>
       <div style={{ gridColumnEnd: 'span 2' }}></div>
-      <div className={classes.resultDiv} style={{ gridColumnEnd: 'span 8' }}>
+      <div
+        className={!loading && gists.length === 0 ? classes.resultDiv : classes.resultDivMove}
+        style={{ gridColumnEnd: 'span 8' }}>
         <SearchContainer />
         {loading ? <CircularProgress className={classes.loader} /> :
           gists.length > 0
-            ? <div style={{width: '550px'}}> {gistsResultCards}</div>
+            ? <div style={{ width: '550px' }}> {gistsResultCards}</div>
             : <div className={classes.defaultText}>
               {'Please type a username and click search'}</div>
         }
